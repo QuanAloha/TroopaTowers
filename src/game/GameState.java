@@ -4,8 +4,10 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Scanner;
 
 public class GameState 
 {
@@ -20,13 +22,26 @@ public class GameState
 	
 	// Constructor
 	
-	public GameState ()
+	public GameState () 
 	{
 		System.out.println("GameState constructor");
 		
-		// Build our path
+		//Create scanner to read path file. 
+
+
+		try {
+			Scanner fileReader = new Scanner(new File("src/resources/path.txt"));
+
+			// Build our path
 		
-		path = new Path();
+			path = new Path(fileReader);
+
+		} catch (Exception e) {
+
+			System.out.println("The file reader is messed up. Please fix the problem.");
+
+		}
+		
 		
 		// Load the background jpg
 		
@@ -59,6 +74,8 @@ public class GameState
 		
 		// Draw the path
 		
+		Path.drawPath(g);
+
 		// Draw the ball		
 	}	
 }
