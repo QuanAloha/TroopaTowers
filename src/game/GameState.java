@@ -33,7 +33,7 @@ public class GameState
 		try
 		{
 			ClassLoader loader = this.getClass().getClassLoader();
-			InputStream is = loader.getResourceAsStream("resources/path_2.jpg");
+			InputStream is = loader.getResourceAsStream("resources/mapOne.jpg");
 			background = javax.imageio.ImageIO.read(is);
 		}
 		catch (IOException e)
