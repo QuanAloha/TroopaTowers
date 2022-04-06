@@ -9,8 +9,10 @@
 package game;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 
 public class GameControl implements Runnable
 {
@@ -18,6 +20,7 @@ public class GameControl implements Runnable
 	
 	private GameView view;
 	private GameState state;
+	private Timer t;
 	
 	// Constructor
 	
@@ -52,5 +55,15 @@ public class GameControl implements Runnable
 		
 		state = new GameState();
 		view = new GameView(state); 
+
+		// Making a timer to trigger 60 times a secod.
+		t = new Timer(16, this);
+		t.start();
+	}
+
+	public void actionPerformed(Actionevent e)
+	{
+		state.updateAll();
+		view.repaint();
 	}
 }

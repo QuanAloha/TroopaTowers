@@ -3,6 +3,7 @@ package game;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ public class GameState
 	
 	private Path path;
 	private BufferedImage background;
+	private double percentTraveled;
 	
 	private double squareAngle;
 	
@@ -38,7 +40,7 @@ public class GameState
 
 		} catch (Exception e) {
 
-			System.out.println("The file reader is messed up. Please fix the problem.");
+			System.out.println("The path file reader is messed up. Please fix the problem.");
 
 		}
 		
@@ -74,8 +76,15 @@ public class GameState
 		
 		// Draw the path
 		
-		Path.drawPath(g);
+		path.drawPath(g);
 
-		// Draw the ball		
+		// Draw the ball
+		
+		path.locatePosition(percentTraveled);
 	}	
+
+	public void updateAll()
+	{
+		percentTraveled += .01;
+	}
 }
